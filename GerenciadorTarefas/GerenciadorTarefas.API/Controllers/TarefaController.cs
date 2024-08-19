@@ -24,7 +24,7 @@ public class TarefaController : ControllerBase
     [HttpPut]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
     public IActionResult Update([FromRoute] string id, [FromBody] RequestTarefaJson request)
     {
         if (new UpdateTarefaUseCase().Execute(id, request))
@@ -37,7 +37,7 @@ public class TarefaController : ControllerBase
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
     public IActionResult Delete([FromRoute] string id)
     {
         if (new DeleteTarefaUseCase().Execute(id))
@@ -50,7 +50,7 @@ public class TarefaController : ControllerBase
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
     public IActionResult Get([FromRoute] string id)
     {
         var response = new GetTarefaUseCase().Execute(id);
